@@ -1,0 +1,26 @@
+﻿@'
+Rahul Verma
+rahul.verma@email.com | +91-9123456780
+LinkedIn: linkedin.com/in/rahulverma
+
+Objective:
+Aspiring Software Engineer seeking a Backend Developer role, with a strong foundation
+in Python, APIs, and databases.
+
+Experience:
+Software Engineer Intern, TechNova Solutions, Jun 2023 - Dec 2023
+Built and maintained REST APIs using Python and Flask. Worked with PostgreSQL for
+data storage and wrote unit tests to improve code reliability. Collaborated with a
+team of 4 developers using Git and Agile sprints.
+
+Freelance Web Developer, Self-employed, 2021 - 2023
+Designed and developed websites for small businesses using HTML, CSS, JavaScript,
+and basic backend integration with Node.js.
+
+Education:
+B.Tech in Computer Science, Pune Institute of Technology, 2024
+
+Skills:
+Python, Flask, Django, REST APIs, PostgreSQL, MySQL, Git, JavaScript, HTML, CSS,
+Docker, Problem Solving
+'@ | Set-Content -Path "data\resumes\sample_resume_2.txt" -Encoding utf8

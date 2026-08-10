@@ -1,0 +1,6 @@
+﻿.env
+.refact/
+.venv/
+__pycache__/
+*.pyc
+vectorstore/

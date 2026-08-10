@@ -1,0 +1,1 @@
+#git rm "data/career_notes/resume_writing_tips.md"
