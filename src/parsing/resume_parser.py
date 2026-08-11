@@ -7,7 +7,11 @@ from google.genai import types
 
 from src.config import API_KEY, CHAT_MODEL
 
-client = genai.Client(api_key=API_KEY)
+
+def get_genai_client():
+    if not API_KEY:
+        raise ValueError("GEMINI_API_KEY is missing. Set it in .env or Streamlit secrets.")
+    return genai.Client(api_key=API_KEY)
 
 RESUME_SCHEMA = {
     "type": "object",
@@ -67,6 +71,7 @@ Resume text:
 def parse_resume(resume_text: str) -> dict:
     prompt = PARSE_PROMPT.format(resume_text=resume_text)
 
+    client = get_genai_client()
     response = client.models.generate_content(
         model=CHAT_MODEL,
         contents=prompt,

@@ -1,7 +1,12 @@
 ﻿"""Paths, model names, and constants. Import from here instead of hard-coding."""
 from pathlib import Path
-from dotenv import load_dotenv
 import os
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    def load_dotenv(*args, **kwargs):
+        return False
 
 load_dotenv()
 
@@ -24,8 +29,6 @@ EMBED_DIM = 768
 
 API_KEY_ENV = "GEMINI_API_KEY"
 API_KEY = os.getenv(API_KEY_ENV)
-if not API_KEY:
-    raise ValueError(f"{API_KEY_ENV} not found -- check your .env file")
 
 CHUNK_SIZE = 800
 CHUNK_OVERLAP = 150

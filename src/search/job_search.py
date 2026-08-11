@@ -2,12 +2,21 @@
 Semantic Job Search -- embed job postings into FAISS, search by candidate profile.
 """
 import json
-import faiss
 import numpy as np
 import pandas as pd
 
 from src.config import JOBS_CSV, JOBS_INDEX_DIR, JOB_TEXT_COLUMNS, TOP_N_JOBS
 from src.search.embed import embed_texts, embed_single
+
+
+def _load_faiss():
+    try:
+        import faiss
+    except ImportError as exc:
+        raise ImportError(
+            "The faiss module is missing. Install the project requirements and run Streamlit from the virtual environment."
+        ) from exc
+    return faiss
 
 METADATA_PATH = JOBS_INDEX_DIR / "jobs_metadata.json"
 INDEX_PATH = JOBS_INDEX_DIR / "jobs.index"
@@ -19,6 +28,7 @@ def _combine_row(row) -> str:
 
 
 def build_job_index(limit: int | None = 60):
+    faiss = _load_faiss()
     JOBS_INDEX_DIR.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(JOBS_CSV)
@@ -43,6 +53,7 @@ def build_job_index(limit: int | None = 60):
 
 
 def search_jobs(profile: dict, top_n: int = TOP_N_JOBS) -> list[dict]:
+    faiss = _load_faiss()
     index = faiss.read_index(str(INDEX_PATH))
     with open(METADATA_PATH, "r", encoding="utf-8") as f:
         metadata = json.load(f)
